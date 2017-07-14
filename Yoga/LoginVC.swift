@@ -14,9 +14,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()

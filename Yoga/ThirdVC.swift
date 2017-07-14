@@ -1,27 +1,43 @@
 //
-//  FirstVC.swift
+//  ThirdVC.swift
 //  Yoga
 //
-//  Created by Lane Faison on 7/13/17.
+//  Created by Lane Faison on 7/14/17.
 //  Copyright © 2017 Lane Faison. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class FirstVC: UIViewController {
+class ThirdVC: UIViewController {
+    
+    let userAccountContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.yellow
+        view.layer.cornerRadius = 5
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if Auth.auth().currentUser?.uid == nil {
             handleLogout()
-            print("User is not logged in...")
         } else {
             let userEmail = Auth.auth().currentUser?.email
             print("Currently logged in under user: \(userEmail ?? "")")
         }
     
+        print("$$$$$$: \(Auth.auth().currentUser?.displayName ?? "!!!!!!!!nothing")")
+        
+        view.addSubview(userAccountContainerView)
+        
+        setupUserAccountContainerView()
+    }
+    
+    func setupUserAccountContainerView() {
         
     }
     
@@ -34,11 +50,7 @@ class FirstVC: UIViewController {
         let loginController = LoginVC()
         present(loginController, animated: true, completion: nil)
     }
-    
-    @IBAction func logoutBtnTapped(_ sender: Any) {
-        handleLogout()
-    }
-    
+
+
 
 }
-
