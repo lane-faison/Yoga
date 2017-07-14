@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		84F56A20265A89580FD3656A /* Pods_Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AFE301E548BE0748CB7429A /* Pods_Yoga.framework */; };
+		F61C3B9A1F197FF800C4E6AD /* ThirdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61C3B991F197FF800C4E6AD /* ThirdVC.swift */; };
 		F6F3C87F1F18842900CCEFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C87E1F18842900CCEFFD /* AppDelegate.swift */; };
 		F6F3C8811F18842900CCEFFD /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C8801F18842900CCEFFD /* FirstVC.swift */; };
 		F6F3C8831F18842900CCEFFD /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C8821F18842900CCEFFD /* SecondVC.swift */; };
@@ -22,6 +23,7 @@
 		5AFE301E548BE0748CB7429A /* Pods_Yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F82F97D1C0A5A28E4D8473 /* Pods-Yoga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yoga.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yoga/Pods-Yoga.debug.xcconfig"; sourceTree = "<group>"; };
 		CB3145027675B3DE5324723E /* Pods-Yoga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yoga.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yoga/Pods-Yoga.release.xcconfig"; sourceTree = "<group>"; };
+		F61C3B991F197FF800C4E6AD /* ThirdVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdVC.swift; sourceTree = "<group>"; };
 		F6F3C87B1F18842900CCEFFD /* Yoga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yoga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F3C87E1F18842900CCEFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6F3C8801F18842900CCEFFD /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				F6F3C8931F18875A00CCEFFD /* LoginVC.swift */,
 				F6F3C8801F18842900CCEFFD /* FirstVC.swift */,
 				F6F3C8821F18842900CCEFFD /* SecondVC.swift */,
+				F61C3B991F197FF800C4E6AD /* ThirdVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				F6F3C87F1F18842900CCEFFD /* AppDelegate.swift in Sources */,
 				F6F3C8941F18875A00CCEFFD /* LoginVC.swift in Sources */,
 				F6F3C8811F18842900CCEFFD /* FirstVC.swift in Sources */,
+				F61C3B9A1F197FF800C4E6AD /* ThirdVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
