@@ -7,19 +7,36 @@
 //
 
 import UIKit
+import Firebase
 
 class FirstVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        if Auth.auth().currentUser?.uid == nil {
+            handleLogout()
+        } else {
+            let userEmail = Auth.auth().currentUser?.email
+            print("Currently logged in under user: \(userEmail ?? "")")
+        }
+    
     }
-
+    
+    func handleLogout() {
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        let loginController = LoginVC()
+        present(loginController, animated: true, completion: nil)
+    }
+    
+    @IBAction func logoutBtnTapped(_ sender: Any) {
+        handleLogout()
+    }
+    
 
 }
 

@@ -98,9 +98,9 @@
 		F6F3C8921F18870000CCEFFD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F6F3C8931F18875A00CCEFFD /* LoginVC.swift */,
 				F6F3C8801F18842900CCEFFD /* FirstVC.swift */,
 				F6F3C8821F18842900CCEFFD /* SecondVC.swift */,
-				F6F3C8931F18875A00CCEFFD /* LoginVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
