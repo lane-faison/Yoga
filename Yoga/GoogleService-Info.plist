@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>642557438098-39cbic6c9sej6hlbp6ev5o79i2tek34r.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.642557438098-39cbic6c9sej6hlbp6ev5o79i2tek34r</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDD7afL0G6INrAAwtewdEfgNnyL8r21DcM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>642557438098</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.lanefaison.Yoga</string>
+	<key>PROJECT_ID</key>
+	<string>yogaapp-13060</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yogaapp-13060.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:642557438098:ios:30453b8922b78a6b</string>
+	<key>DATABASE_URL</key>
+	<string>https://yogaapp-13060.firebaseio.com</string>
+</dict>
+</plist>
