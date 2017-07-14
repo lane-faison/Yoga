@@ -9,8 +9,8 @@
 import UIKit
 import Firebase
 
-class LoginVC: UIViewController {
-
+class LoginVC: UIViewController, UITextFieldDelegate {
+    
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -63,43 +63,49 @@ class LoginVC: UIViewController {
     func handleRegister() {
         print("Registering...")
         
-        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
+        guard let name = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text else {
             print("Form is not valid")
             return
         }
         
-        Auth.auth().createUser(withEmail: email, password: password, completion: { (user: User?, error) in
-          
-            if error != nil {
-                print(error!)
-                return
-            }
-            
-            guard let uid = user?.uid else {
-                return
-            }
-            // Successfully authenticated user
-            
-            let ref = Database.database().reference(fromURL: "https://yogaapp-13060.firebaseio.com/")
-            let usersReference = ref.child("users").child(uid)
-            let values = ["name": name, "email": email]
-            usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+        if password == confirmPassword {
+            Auth.auth().createUser(withEmail: email, password: password, completion: { (user: User?, error) in
                 
-                if err != nil {
-                    print(err!)
+                if error != nil {
+                    print(error!)
                     return
                 }
-                print("Saved user successfully into Firebase db")
-                // Handle segue here
                 
-                self.dismiss(animated: true, completion: nil)
+                guard let uid = user?.uid else {
+                    return
+                }
+                // Successfully authenticated user
+                
+                let ref = Database.database().reference(fromURL: "https://yogaapp-13060.firebaseio.com/")
+                let usersReference = ref.child("users").child(uid)
+                let values = ["name": name, "email": email]
+                usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                    
+                    if err != nil {
+                        print(err!)
+                        return
+                    }
+                    print("Saved user successfully into Firebase db")
+                    // Handle segue here
+                    
+                    self.dismiss(animated: true, completion: nil)
+                })
             })
-        })
+        } else {
+            print("Passwords do not match")
+        }
+        
     }
     
     let nameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Name"
+        tf.autocorrectionType = .no
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
@@ -114,6 +120,7 @@ class LoginVC: UIViewController {
     let emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email"
+        tf.autocorrectionType = .no
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
@@ -144,6 +151,7 @@ class LoginVC: UIViewController {
         let tf = UITextField()
         tf.placeholder = "Confirm password"
         tf.isSecureTextEntry = true
+        tf.returnKeyType = .done
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
@@ -194,7 +202,7 @@ class LoginVC: UIViewController {
         confirmPasswordTextField.isHidden = loginRegisterSegementedControl.selectedSegmentIndex == 0 ? true : false
         confirmPasswordTextFieldHeightAnchor?.isActive = true
         
-        // Change visibility of separators 
+        // Change visibility of separators
         nameSeparatorView.isHidden = loginRegisterSegementedControl.selectedSegmentIndex == 0 ? true : false
         passwordSeparatorView.isHidden = loginRegisterSegementedControl.selectedSegmentIndex == 0 ? true : false
         
@@ -204,8 +212,8 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
-    
-
+        
+        
         view.addSubview(inputsContainerView)
         view.addSubview(profileImageView)
         view.addSubview(loginRegisterSegementedControl)
@@ -215,6 +223,15 @@ class LoginVC: UIViewController {
         setupLoginRegisterButton()
         setupProfileImageView()
         setupLoginRegisterSegmentedControl()
+        
+        self.nameTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.confirmPasswordTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
     }
     
     func setupProfileImageView() {
@@ -237,7 +254,7 @@ class LoginVC: UIViewController {
     var emailTextFieldHeightAnchor: NSLayoutConstraint?
     var passwordTextFieldHeightAnchor: NSLayoutConstraint?
     var confirmPasswordTextFieldHeightAnchor: NSLayoutConstraint?
-
+    
     func setupInputsContainterView() {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -299,6 +316,31 @@ class LoginVC: UIViewController {
         loginRegisterButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
         loginRegisterButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    // Hide keyboard when user touches outside keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // Hide keyboard when user presses Return key
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Scrolls view up when keyboard shows
+    func keyboardWillShow(notification: NSNotification) {
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= 50
+        }
+    }
+    
+    // Scrolls view down when keyboard hides
+    func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y += 50
+        }
     }
 }
 
