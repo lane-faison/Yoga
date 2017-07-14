@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  FirstVC.swift
 //  Yoga
 //
 //  Created by Lane Faison on 7/13/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FirstVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  SecondVC.swift
 //  Yoga
 //
 //  Created by Lane Faison on 7/13/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
