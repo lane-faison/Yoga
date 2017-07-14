@@ -23,7 +23,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     lazy var loginRegisterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.red
+        button.backgroundColor = UIColor.green
         button.setTitle("Register", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
