@@ -14,6 +14,13 @@ class FirstVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser?.uid == nil {
             handleLogout()
             print("User is not logged in...")
@@ -21,8 +28,6 @@ class FirstVC: UIViewController {
             let userEmail = Auth.auth().currentUser?.email
             print("Currently logged in under user: \(userEmail ?? "")")
         }
-    
-        
     }
     
     func handleLogout() {

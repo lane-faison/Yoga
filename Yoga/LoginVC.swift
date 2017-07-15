@@ -158,7 +158,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "avatar3")
+        imageView.image = UIImage(named: "avatar")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
