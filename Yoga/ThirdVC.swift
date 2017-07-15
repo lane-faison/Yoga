@@ -66,21 +66,26 @@ class ThirdVC: UIViewController {
         return label
     }()
     
+    var ref: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        ref = Database.database().reference()
+        
         view.addSubview(navigationBar)
         view.addSubview(userAccountContainerView)
         
         setupNavigationBar()
         setupUserAccountContainerView()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser?.uid == nil {
             handleLogout()
         } else {
+            getUserInfo()
             let userEmail = Auth.auth().currentUser?.email
             print("Currently logged in under user: \(userEmail ?? "")")
         }
@@ -117,13 +122,21 @@ class ThirdVC: UIViewController {
         nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 25).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: userAccountContainerView.widthAnchor).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        nameLabel.text = Auth.auth().currentUser?.uid // NEED NAME HERE
         
         emailLabel.centerXAnchor.constraint(equalTo: userAccountContainerView.centerXAnchor).isActive = true
         emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
         emailLabel.widthAnchor.constraint(equalTo: userAccountContainerView.widthAnchor).isActive = true
         emailLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        emailLabel.text = Auth.auth().currentUser?.email
+    }
+    
+    func getUserInfo() {
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            self.nameLabel.text = value?["name"] as? String ?? ""
+            self.emailLabel.text = value?["email"] as? String ?? ""
+        })
     }
     
     func handleLogout() {
