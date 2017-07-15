@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SecondVC: UIViewController {
 
@@ -18,6 +19,13 @@ class SecondVC: UIViewController {
     
     }
 
+    @IBAction func handleLogout(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+    }
 
 
 }
