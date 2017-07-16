@@ -9,12 +9,11 @@
 import UIKit
 import Firebase
 
-class ThirdVC: UIViewController {
+class ThirdVC: UIViewController, UIScrollViewDelegate {
     
     let userAccountContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.yellow
-        view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -40,25 +39,54 @@ class ThirdVC: UIViewController {
     let emailLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Avenir next", size: 20)
-        label.textColor = UIColor.black
+        label.textColor = .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    let userInformationContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let bioSection: UITextView = {
+        let view = UITextView()
+        view.font = UIFont(name: "Avenir next", size: 12)
+        view.textColor = .black
+        view.textAlignment = .justified
+        view.backgroundColor = .red
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     var ref: DatabaseReference!
+    var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(handleEdit))
         
         ref = Database.database().reference()
         
-        view.addSubview(userAccountContainerView)
+        scrollView = UIScrollView(frame: view.bounds)
+        scrollView.backgroundColor = UIColor.cyan
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 2000.0)
+        scrollView.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        scrollView.autoresizingMask = UIViewAutoresizing.flexibleHeight
+        scrollView.delegate = self
         
+        scrollView.addSubview(userAccountContainerView)
+        scrollView.addSubview(userInformationContainerView)
         setupUserAccountContainerView()
+        setupUserInformationContainerView()
+        view.addSubview(scrollView)
         
     }
     
@@ -72,11 +100,12 @@ class ThirdVC: UIViewController {
         }
     }
     
+    
     func setupUserAccountContainerView() {
         
-        userAccountContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        userAccountContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
-        userAccountContainerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        userAccountContainerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        userAccountContainerView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 64).isActive = true
+        userAccountContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         userAccountContainerView.heightAnchor.constraint(equalToConstant: 250).isActive = true
         
         userAccountContainerView.addSubview(profileImageView)
@@ -109,6 +138,20 @@ class ThirdVC: UIViewController {
         })
     }
     
+    func setupUserInformationContainerView() {
+        userInformationContainerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        userInformationContainerView.topAnchor.constraint(equalTo: userAccountContainerView.bottomAnchor, constant: 20).isActive = true
+        userInformationContainerView.heightAnchor.constraint(equalToConstant: 2000).isActive = true
+        userInformationContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        
+        userInformationContainerView.addSubview(bioSection)
+        
+        bioSection.centerXAnchor.constraint(equalTo: userInformationContainerView.centerXAnchor).isActive = true
+        bioSection.topAnchor.constraint(equalTo: userInformationContainerView.topAnchor, constant: 20).isActive = true
+        bioSection.widthAnchor.constraint(equalTo: userInformationContainerView.widthAnchor).isActive = true
+        bioSection.heightAnchor.constraint(equalToConstant: 300).isActive = true
+    }
+    
     func handleLogout() {
         do {
             try Auth.auth().signOut()
@@ -117,5 +160,11 @@ class ThirdVC: UIViewController {
         }
         let loginController = LoginVC()
         present(loginController, animated: true, completion: nil)
+    }
+    
+    func handleEdit() {
+
+        
+        
     }
 }
