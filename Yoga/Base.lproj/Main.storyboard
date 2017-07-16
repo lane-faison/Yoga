@@ -109,7 +109,7 @@
         <scene sceneID="uR2-qA-egG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pul-2e-CtI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Studios" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Studios" image="MapIcon" selectedImage="MapIcon" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a1T-ut-kda">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -147,7 +147,7 @@
         <scene sceneID="r9W-Nu-8sR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wN2-SD-KK9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Instructors" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Instructors" image="flower" selectedImage="flower" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EEc-jQ-OiE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -164,8 +164,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="MapIcon" width="23" height="25"/>
         <image name="avatar" width="25" height="20"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="flower" width="25" height="19"/>
     </resources>
 </document>
