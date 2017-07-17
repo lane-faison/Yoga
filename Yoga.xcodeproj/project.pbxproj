@@ -10,6 +10,7 @@
 		84F56A20265A89580FD3656A /* Pods_Yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AFE301E548BE0748CB7429A /* Pods_Yoga.framework */; };
 		F61C3B9A1F197FF800C4E6AD /* ThirdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61C3B991F197FF800C4E6AD /* ThirdVC.swift */; };
 		F6864E591F1BBB7C0035D75C /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6864E581F1BBB7C0035D75C /* ColorScheme.swift */; };
+		F6864E5C1F1C8CBB0035D75C /* Instructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6864E5B1F1C8CBB0035D75C /* Instructor.swift */; };
 		F6F3C87F1F18842900CCEFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C87E1F18842900CCEFFD /* AppDelegate.swift */; };
 		F6F3C8811F18842900CCEFFD /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C8801F18842900CCEFFD /* FirstVC.swift */; };
 		F6F3C8831F18842900CCEFFD /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C8821F18842900CCEFFD /* SecondVC.swift */; };
@@ -26,6 +27,7 @@
 		CB3145027675B3DE5324723E /* Pods-Yoga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yoga.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yoga/Pods-Yoga.release.xcconfig"; sourceTree = "<group>"; };
 		F61C3B991F197FF800C4E6AD /* ThirdVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdVC.swift; sourceTree = "<group>"; };
 		F6864E581F1BBB7C0035D75C /* ColorScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
+		F6864E5B1F1C8CBB0035D75C /* Instructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instructor.swift; sourceTree = "<group>"; };
 		F6F3C87B1F18842900CCEFFD /* Yoga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yoga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F3C87E1F18842900CCEFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6F3C8801F18842900CCEFFD /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
@@ -75,6 +77,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		F6864E5A1F1C8C950035D75C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6864E5B1F1C8CBB0035D75C /* Instructor.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		F6F3C8721F18842900CCEFFD = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +106,7 @@
 		F6F3C87D1F18842900CCEFFD /* Yoga */ = {
 			isa = PBXGroup;
 			children = (
+				F6864E5A1F1C8C950035D75C /* Models */,
 				F6864E571F1BBB640035D75C /* Resources */,
 				F6F3C8921F18870000CCEFFD /* Controller */,
 				F6F3C87E1F18842900CCEFFD /* AppDelegate.swift */,
@@ -250,6 +261,7 @@
 				F6F3C8811F18842900CCEFFD /* FirstVC.swift in Sources */,
 				F6864E591F1BBB7C0035D75C /* ColorScheme.swift in Sources */,
 				F61C3B9A1F197FF800C4E6AD /* ThirdVC.swift in Sources */,
+				F6864E5C1F1C8CBB0035D75C /* Instructor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
