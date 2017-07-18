@@ -108,7 +108,21 @@ extension LoginVC {
                 })
             })
         } else {
-            print("Passwords do not match")
+            
+            //Notification that passwords do not match
+            createAlert(title: "Error!", message: "Passwords must match in order to complete your registration")
+            
+            
         }
+    }
+    
+    func createAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }

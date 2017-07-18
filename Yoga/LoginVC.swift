@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class LoginVC: UIViewController, UITextFieldDelegate {
-    
+        
     let mainTitle: UILabel = {
         let label = UILabel()
         label.text = "YogaYoga"
@@ -121,7 +121,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         view.addSubview(loginRegisterSegementedControl)
         view.addSubview(loginRegisterButton)
         
-
         setupMainTitle()
         setupLoginRegisterSegmentedControl()
         setupInputsContainterView()
