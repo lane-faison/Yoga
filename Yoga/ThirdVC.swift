@@ -194,6 +194,21 @@ class ThirdVC: UIViewController, UIScrollViewDelegate {
             let value = snapshot.value as? NSDictionary
             self.nameLabel.text = value?["name"] as? String ?? ""
             self.emailLabel.text = value?["email"] as? String ?? ""
+            
+            if let profileImageURL = value?["pictureURL"] as? String {
+                if profileImageURL != "" {
+                    let url = URL(string: profileImageURL)
+                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                        if error != nil {
+                            print(error)
+                            return
+                        }
+                        DispatchQueue.main.async {
+                            self.profileImageView.image = UIImage(data: data!)
+                        }
+                    }).resume()
+                }
+            }
         })
     }
     

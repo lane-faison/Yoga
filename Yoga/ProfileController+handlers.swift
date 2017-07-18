@@ -43,7 +43,8 @@ extension ThirdVC: UIImagePickerControllerDelegate, UINavigationControllerDelega
         if let selectedImage = selectedImageFromPicker {
             profileImageView.image = selectedImage
             
-            let storageRef = Storage.storage().reference().child("MyImage.png")
+            let imageName = NSUUID().uuidString
+            let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).png")
             
             if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
                

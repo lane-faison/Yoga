@@ -73,6 +73,22 @@ class FirstVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let instructor = instructors[indexPath.row]
         cell.textLabel?.text = instructor.name
         cell.detailTextLabel?.text = instructor.email
+        cell.imageView?.image = UIImage(named: "avatar")
+        
+        if let profileImageURL = instructor.pictureURL {
+            if profileImageURL != "" {
+                let url = URL(string: profileImageURL)
+                URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        cell.imageView?.image = UIImage(data: data!)
+                    }
+                }).resume() 
+            }
+        }
         return cell
     }
     
