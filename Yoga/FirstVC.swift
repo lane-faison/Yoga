@@ -77,6 +77,9 @@ class FirstVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        tableView.reloadData()
+        
         if Auth.auth().currentUser?.uid == nil {
             handleLogout()
             print("User is not logged in...")

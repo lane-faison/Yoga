@@ -11,4 +11,5 @@ import UIKit
 class Instructor: NSObject {
     var name: String?
     var email: String?
+    var pictureURL: String?
 }

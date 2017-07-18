@@ -31,41 +31,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         return sc
     }()
     
-    func handleLoginRegisterChange() {
-        let title = loginRegisterSegementedControl.titleForSegment(at: loginRegisterSegementedControl.selectedSegmentIndex)
-        loginRegisterButton.setTitle(title, for: .normal)
-        
-        // Change height of inputContainerView
-        inputContainerViewHeightAnchor?.constant = loginRegisterSegementedControl.selectedSegmentIndex == 0 ? 100 : 200
-        
-        // Change height of nameTextField
-        nameTextFieldHeightAnchor?.isActive = false
-        nameTextFieldHeightAnchor = nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegementedControl.selectedSegmentIndex == 0 ? 0 : 1/4)
-        nameTextField.isHidden = loginRegisterSegementedControl.selectedSegmentIndex == 0 ? true : false
-        nameTextFieldHeightAnchor?.isActive = true
-        
-        // Change height of emailTextField
-        emailTextFieldHeightAnchor?.isActive = false
-        emailTextFieldHeightAnchor = emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegementedControl.selectedSegmentIndex == 0 ? 1/2 : 1/4)
-        emailTextFieldHeightAnchor?.isActive = true
-        
-        // Change height of passwordTextField
-        passwordTextFieldHeightAnchor?.isActive = false
-        passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegementedControl.selectedSegmentIndex == 0 ? 1/2 : 1/4)
-        passwordTextFieldHeightAnchor?.isActive = true
-        
-        // Change height of confirmPasswordTextField
-        confirmPasswordTextFieldHeightAnchor?.isActive = false
-        confirmPasswordTextFieldHeightAnchor = confirmPasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegementedControl.selectedSegmentIndex == 0 ? 0 : 1/4)
-        confirmPasswordTextField.isHidden = loginRegisterSegementedControl.selectedSegmentIndex == 0 ? true : false
-        confirmPasswordTextFieldHeightAnchor?.isActive = true
-        
-        // Change visibility of separators
-        nameSeparatorView.isHidden = loginRegisterSegementedControl.selectedSegmentIndex == 0 ? true : false
-        passwordSeparatorView.isHidden = loginRegisterSegementedControl.selectedSegmentIndex == 0 ? true : false
-        
-    }
-    
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -86,7 +51,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     let nameSeparatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+        view.backgroundColor = ColorScheme.dividerColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -101,7 +66,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     let emailSeparatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+        view.backgroundColor = ColorScheme.dividerColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -116,7 +81,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     let passwordSeparatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+        view.backgroundColor = ColorScheme.dividerColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -129,14 +94,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
-    
-//    let profileImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = UIImage(named: "avatar")
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.contentMode = .scaleAspectFit
-//        return imageView
-//    }()
     
     lazy var loginRegisterButton: UIButton = {
         let button = UIButton(type: .system)
@@ -153,72 +110,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         return button
     }()
     
-    func handleLoginRegister() {
-        if loginRegisterSegementedControl.selectedSegmentIndex == 0 {
-            handleLogin()
-        } else {
-            handleRegister()
-        }
-    }
-    
-    func handleLogin() {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
-            print("Form is not valid")
-            // Where you will need to do an Error popup
-            return
-        }
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            // Successfully logged in our user
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    func handleRegister() {
-        print("Registering...")
-        
-        guard let name = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text else {
-            print("Form is not valid")
-            return
-        }
-        
-        if password == confirmPassword {
-            Auth.auth().createUser(withEmail: email, password: password, completion: { (user: User?, error) in
-                
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                
-                guard let uid = user?.uid else {
-                    return
-                }
-                // Successfully authenticated user
-                
-                let ref = Database.database().reference(fromURL: "https://yogaapp-13060.firebaseio.com/")
-                let usersReference = ref.child("users").child(uid)
-                let values = ["name": name, "email": email]
-                usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                    
-                    if err != nil {
-                        print(err!)
-                        return
-                    }
-                    print("Saved user successfully into Firebase db")
-                    // Handle segue here
-                    
-                    self.dismiss(animated: true, completion: nil)
-                })
-            })
-        } else {
-            print("Passwords do not match")
-        }
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -226,13 +117,11 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         
         view.addSubview(inputsContainerView)
-//        view.addSubview(profileImageView)
         view.addSubview(mainTitle)
         view.addSubview(loginRegisterSegementedControl)
         view.addSubview(loginRegisterButton)
         
 
-//        setupProfileImageView()
         setupMainTitle()
         setupLoginRegisterSegmentedControl()
         setupInputsContainterView()
@@ -247,13 +136,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
     }
-    
-//    func setupProfileImageView() {
-//        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegementedControl.topAnchor, constant: -12).isActive = true
-//        profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-//        profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-//    }
     
     func setupMainTitle() {
         mainTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -361,11 +243,5 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y += 100
         }
-    }
-}
-
-extension UIColor {
-    convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
-        self.init(red: r/255, green: g/255, blue: b/255, alpha: 1.0)
     }
 }
