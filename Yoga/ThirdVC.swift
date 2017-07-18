@@ -19,11 +19,14 @@ class ThirdVC: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
-    let profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star_filled")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImageView)))
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     

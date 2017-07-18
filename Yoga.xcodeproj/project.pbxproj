@@ -11,6 +11,8 @@
 		F61C3B9A1F197FF800C4E6AD /* ThirdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61C3B991F197FF800C4E6AD /* ThirdVC.swift */; };
 		F6864E591F1BBB7C0035D75C /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6864E581F1BBB7C0035D75C /* ColorScheme.swift */; };
 		F6864E5C1F1C8CBB0035D75C /* Instructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6864E5B1F1C8CBB0035D75C /* Instructor.swift */; };
+		F6E581FD1F1D0D6D006577AD /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E581FC1F1D0D6D006577AD /* LoginController+handlers.swift */; };
+		F6E581FF1F1D0D80006577AD /* ProfileController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E581FE1F1D0D80006577AD /* ProfileController+handlers.swift */; };
 		F6F3C87F1F18842900CCEFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C87E1F18842900CCEFFD /* AppDelegate.swift */; };
 		F6F3C8811F18842900CCEFFD /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C8801F18842900CCEFFD /* FirstVC.swift */; };
 		F6F3C8831F18842900CCEFFD /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C8821F18842900CCEFFD /* SecondVC.swift */; };
@@ -28,6 +30,8 @@
 		F61C3B991F197FF800C4E6AD /* ThirdVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdVC.swift; sourceTree = "<group>"; };
 		F6864E581F1BBB7C0035D75C /* ColorScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		F6864E5B1F1C8CBB0035D75C /* Instructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instructor.swift; sourceTree = "<group>"; };
+		F6E581FC1F1D0D6D006577AD /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
+		F6E581FE1F1D0D80006577AD /* ProfileController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileController+handlers.swift"; sourceTree = "<group>"; };
 		F6F3C87B1F18842900CCEFFD /* Yoga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yoga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F3C87E1F18842900CCEFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6F3C8801F18842900CCEFFD /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 				F6F3C8801F18842900CCEFFD /* FirstVC.swift */,
 				F6F3C8821F18842900CCEFFD /* SecondVC.swift */,
 				F61C3B991F197FF800C4E6AD /* ThirdVC.swift */,
+				F6E581FC1F1D0D6D006577AD /* LoginController+handlers.swift */,
+				F6E581FE1F1D0D80006577AD /* ProfileController+handlers.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -255,8 +261,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6E581FF1F1D0D80006577AD /* ProfileController+handlers.swift in Sources */,
 				F6F3C8831F18842900CCEFFD /* SecondVC.swift in Sources */,
 				F6F3C87F1F18842900CCEFFD /* AppDelegate.swift in Sources */,
+				F6E581FD1F1D0D6D006577AD /* LoginController+handlers.swift in Sources */,
 				F6F3C8941F18875A00CCEFFD /* LoginVC.swift in Sources */,
 				F6F3C8811F18842900CCEFFD /* FirstVC.swift in Sources */,
 				F6864E591F1BBB7C0035D75C /* ColorScheme.swift in Sources */,
