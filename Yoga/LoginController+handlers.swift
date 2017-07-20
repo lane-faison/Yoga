@@ -58,11 +58,14 @@ extension LoginVC {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             print("Form is not valid")
             // Where you will need to do an Error popup
+            createAlert(title: "Error!", message: "The email or password you have entered is not valid.")
             return
         }
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {
+                // User has failed to log in
                 print(error!)
+                self.createAlert(title: "Login failed", message: "Please check that your email or password is entered in correctly.")
                 return
             }
             // Successfully logged in our user
@@ -83,6 +86,7 @@ extension LoginVC {
                 
                 if error != nil {
                     print(error!)
+                    
                     return
                 }
                 
