@@ -33,6 +33,8 @@ class FirstVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.register(InstructorCell.self, forCellReuseIdentifier: cellId)
         fetchUser()
+        tableView.reloadData()
+
     }
     
     func setupTableView() {
@@ -80,7 +82,7 @@ class FirstVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let url = URL(string: profileImageURL)
                 URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
                     if error != nil {
-                        print(error)
+                        print(error!)
                         return
                     }
                     DispatchQueue.main.async {
@@ -90,6 +92,10 @@ class FirstVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         return cell
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
